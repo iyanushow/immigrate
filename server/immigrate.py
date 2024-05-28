@@ -38,7 +38,7 @@ def get_immigration_pathway(age, education, work_experience, language_proficienc
     response = client.completions.create(
         model="ft:davinci-002:personal::9TcI2k99",  # Your fine-tuned model
         prompt=question,
-        max_tokens=150
+        max_tokens=50
     )
 
     # Extract and return the model's recommendation
