@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Selection from './Selection';
 import RadioSelect from './Radio';
+import Loader, { Response } from './Loader';
 
 const validationSchema = Yup.object().shape({
   age: Yup.string(),
@@ -65,13 +66,15 @@ function Form() {
     education: ''
   };
 
+  const [submitting, setSubmitting] = useState(false)
+  const [response, setResponse] = useState(``)
+
   const {
     handleChange,
     handleBlur,
     handleSubmit,
-    setSubmitting,
     values,
-    setFieldValue
+    setFieldValue,
   } = useFormik({
     initialValues,
     validationSchema,
@@ -79,9 +82,11 @@ function Form() {
       setSubmitting(true);
       try {
         const res = await axios.post('http://127.0.0.1:5000/submit', formValues);
-        console.log(res.data);
+        console.log(res.data, "FORM RESPONSE");
+        setResponse(res.data)
         setSubmitting(false);
       } catch (error) {
+        setResponse("")
         setSubmitting(false);
         console.error('Error submitting form', error);
       }
@@ -89,6 +94,11 @@ function Form() {
   });
 
   return (
+    <>
+    <Loader isActive={submitting} />
+
+    {response && !submitting && <Response response={response} onClose={() => setResponse('')} />}
+
     <div>
       <header>
         <h1 className="text-base font-semibold leading-7 text-gray-900">Complete the form to find your best immigration route</h1>
@@ -120,7 +130,7 @@ function Form() {
                 <label
                   htmlFor="workExperience"
                   className="block text-sm font-medium leading-6 text-gray-900">
-                  Profesion
+                  Profession
                 </label>
                 <div className="mt-2">
                   <input
@@ -207,6 +217,8 @@ function Form() {
         </div>
       </form>
     </div>
+    </>
+
   );
 }
 

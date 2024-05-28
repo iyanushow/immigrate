@@ -21,24 +21,18 @@ def submit_form():
 
     # Process the data (for example, save to database or perform some logic)
 
-    # response = get_immigration_pathway(
-    #     age=age,
-    #     education=education,
-    #     work_experience=work_experience,
-    #     language_proficiency=language_proficiency,
-    #     preferred_location=preferred_location,
-    #     job_offer="Yes" if hasJobOffer else "No",
-    #     family_in_canada="Yes" if hasFamily else "No",
-    # )
+    response = get_immigration_pathway(
+        age=age,
+        education=education,
+        work_experience=work_experience,
+        language_proficiency=language_proficiency,
+        preferred_location=preferred_location,
+        job_offer="Yes" if hasJobOffer else "No",
+        family_in_canada="Yes" if hasFamily else "No",
+    )
 
-    # print(response)
-    response = {
-        'message': 'Form submitted successfully!',
-        'received': {
-            'name': name,
-            'email': email
-        }
-    }
+    print(response)
+    
     return jsonify(response)
 
 

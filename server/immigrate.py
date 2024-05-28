@@ -5,7 +5,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+print(os.getenv('OPENAI_KEY'))
+client = OpenAI(api_key=os.getenv('OPENAI_KEY'))
 
 
 
@@ -35,24 +36,13 @@ def get_immigration_pathway(age, education, work_experience, language_proficienc
 
     # Request completion from the model
     response = client.completions.create(
-        model="ft:davinci-002:personal::9Ra9hNM7",  # Your fine-tuned model
+        model="ft:davinci-002:personal::9TcI2k99",  # Your fine-tuned model
         prompt=question,
         max_tokens=150
     )
 
     # Extract and return the model's recommendation
     recommended_pathway = response.choices[0].text.strip()
+    print(recommended_pathway)
     return recommended_pathway
 
-
-# We can use it this way i think:
-result = get_immigration_pathway(
-    age=32,
-    education="Bachelor's degree in Information Technology",
-    work_experience="5 years as a software developer",
-    language_proficiency="Fluent in English",
-    job_offer="No",
-    family_in_canada="No",
-    preferred_location="Toronto"
-)
-print("Recommended Immigration Pathway:", result)

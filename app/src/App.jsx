@@ -1,5 +1,6 @@
 import Form from './components/Form';
 import Hero from './components/Hero';
+import { Response } from './components/Loader';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Form />
       </div>
     </div>
+    <Response />
     </>
   );
 }
