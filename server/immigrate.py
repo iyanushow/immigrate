@@ -35,14 +35,15 @@ def get_immigration_pathway(age, education, work_experience, language_proficienc
     )
 
     # Request completion from the model
-    response = client.completions.create(
-        model="ft:davinci-002:personal::9TcI2k99",  # Your fine-tuned model
-        prompt=question,
-        max_tokens=50
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",  # Your fine-tuned model
+        messages=[
+            {"role":"user", "content": question},
+        ],
+        max_tokens=1500
     )
 
     # Extract and return the model's recommendation
-    recommended_pathway = response.choices[0].text.strip()
-    print(recommended_pathway)
+    recommended_pathway = response.choices[0].message.content.strip()
     return recommended_pathway
 
