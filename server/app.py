@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
 
-@app.route('/submit', methods=['POST'])
+@app.route('/', methods=['POST'])
 def submit_form():
     data = request.get_json()
     age = data.get('age')
@@ -29,12 +29,9 @@ def submit_form():
         preferred_location=preferred_location,
         job_offer="Yes" if hasJobOffer else "No",
         family_in_canada="Yes" if hasFamily else "No",
-    )
-
-    print(response)
-    
+    )    
     return jsonify(response)
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
