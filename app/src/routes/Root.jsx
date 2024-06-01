@@ -4,7 +4,7 @@ function Root() {
   return (
     <>
       <Nav />
-      <div className="px-4 sm:pl-64 isolate pt-14 sm:pr-0 relative bg-white">
+      <div className="px-4 sm:pl-64 isolate pt-6 md:pt-14 sm:pr-0 relative bg-white">
         <div
           className="absolute sm:pl-64 sm:pr-0 inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
           aria-hidden="true">

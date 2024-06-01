@@ -103,7 +103,7 @@ function Form() {
       <div>
         <header>
           <h1 className="text-4xl font-bold text-gray-900">Immigration Path</h1>
-          <h2 className="text-base font-normal leading-7 text-gray-900">
+          <h2 className="text-base font-normal leading-7 text-gray-900 mt-5">
             Complete the form to find your best immigration route
           </h2>
         </header>

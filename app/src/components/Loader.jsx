@@ -17,7 +17,7 @@ const Spinner = () => {
   );
 };
 
-const Loader = ({ isActive,onClose }) => {
+const Loader = ({ isActive, onClose }) => {
   return (
     <>
       {isActive && (
@@ -36,7 +36,7 @@ export const Response = ({ response, onClose }) => {
     <>
       {response && (
         <Modal onClose={onClose}>
-          <div className="max-w-6xl my-auto mx-auto px-3 border-gray-100 h-[200px] inset-0 flex justify-center z-[400] items-center backdrop-blur-sm bg-white fixed">
+          <div className="rounded-sm max-w-6xl my-auto sm:mx-auto px-3 border-gray-100 p-5 mx-2.5 max-h-[90%] flex justify-center z-[400] items-center backdrop-blur-sm bg-white fixed">
             {response}
           </div>
         </Modal>
@@ -45,12 +45,14 @@ export const Response = ({ response, onClose }) => {
   );
 };
 
-const Modal = ({ children,onClose, rootId = 'root' }) => {
+const Modal = ({ children, onClose, rootId = 'root' }) => {
   return (
     <>
       {createPortal(
         <>
-          <div onClick={onClose} className="w-full fixed inset-0 flex justify-center z-[400] items-center backdrop-blur-sm bg-black/50">
+          <div
+            onClick={onClose}
+            className="w-full fixed inset-0 flex justify-center z-[400] items-center backdrop-blur-sm bg-black/50">
             {children}
           </div>
         </>,
